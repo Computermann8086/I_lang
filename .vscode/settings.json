@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.asm": "nasm",
+        "*.lib": "assembly",
+        "ReadMe": "plaintext",
+        "stdlib.h": "c"
+    }
+}
