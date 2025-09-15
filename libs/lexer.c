@@ -18,7 +18,9 @@ typedef struct {
 
 const char *keywords[] = {"if", "else", "while", "for", NULL};
 
-void lexer(char *src_ptr) {
+
+
+int lexer(char *src_ptr) {
     // Lexer implementation goes here
     
 }
@@ -36,14 +38,15 @@ Token tokenize(const char** src_ptr){
         token.value = NULL;
     }
 
-    if (isalpha(*current_token) || *current_token == "_"){
+    if (isalpha(*current_token) || *current_token == '_'){
         int len = 0;
         const char *start = current_token;
-        while (isalnum(*current_token) || *current_token == "_"){
+        while (isalnum(*current_token) || *current_token == '_'){
+            current_token++;
             len++;
         }
         token.value = (char*)malloc(len+1);
-        strncopy(token.value, start, len);
+        strncpy(token.value, start, len);
         token.value[len] = '\0';
         
         int iskeyword = 0;
@@ -64,8 +67,14 @@ Token tokenize(const char** src_ptr){
             len++;
         }
         token.value = (char *)malloc(len+1);
-        strncopy();
+        strncpy(token.value, start, len);
+        token.value[len] = '\0';
+    } else{
+        token.type = TOKEN_EOF;
+        token.value = NULL;
     }
+    *src_ptr = current_token;
+    return token;
     
 }
 
