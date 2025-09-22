@@ -18,6 +18,7 @@ typedef enum{
 typedef struct {
     TokenType type;
     char* value;
+    struct Token *next;
 } Token;
 
 const char *keywords[] = {"if", "else", "while", "for", NULL};
