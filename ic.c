@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <error.h>
-#include <c:\Users\Compu\OneDrive\Skrivebord\I lang\I_lang\libs\lexer.c>
+#include <errno.h>
+#include "libs\lexer.c"
 
 FILE *fileptr;
 char *mptr = NULL;
@@ -31,18 +31,23 @@ int main(int argv, char* argc[]) {
     mptr = (char *)malloc(sizeof(char)*fsize+1);
     fread(mptr, sizeof(char), fsize, fileptr);
     mptr[fsize] = '\0';
-    char temp = *mptr;
     smptr = &mptr[0];
 
-    for (int i = 0; i < fsize; i++){
-        printf("Byte: %d, Value: %c \n", i, mptr[i]);
+    //for (int i = 0; i < fsize; i++){
+    //    printf("Byte: %d, Value: %c \n", i, mptr[i]);
+    //}
+
+    int nfound = 0;
+
+    for (int i = 0; nfound != 1; i++){
+        tokenize(&smptr);
     }
+    rettoken = tokenize(&smptr);
+    printf("token.value: ");
+    puts((char *)rettoken.value);
 
     free((void *)mptr);
-    printf("Running tokenize\n");
-    rettoken = tokenize(&smptr);
-    printf("Printing token.value:\n");
-    printf((char *)rettoken.value);
+    mptr = NULL;
     if (fsize != -1){
         fclose(fileptr);
     }
