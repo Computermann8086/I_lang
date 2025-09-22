@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include "libs\lexer.c"
+#include "libs\parser.c"
 
 FILE *fileptr;
 char *mptr = NULL;
